@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "frontend.origin",
+      "type": "java.lang.String",
+      "description": "Description for frontend.origin."
+    },
+    {
+      "name": "backendUrl.origin",
+      "type": "java.lang.String",
+      "description": "Description for backendUrl.origin."
+    }
+  ] }

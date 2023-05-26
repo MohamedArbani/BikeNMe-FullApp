@@ -1,0 +1,2 @@
+CREATE DATABASE bikes;
+USE bikes;

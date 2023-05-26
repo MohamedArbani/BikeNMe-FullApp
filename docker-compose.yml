@@ -1,0 +1,31 @@
+services:
+  db:
+    image: mysql
+    ports:
+           - 1433:3306
+    container_name: db
+    volumes:
+      - ./docker/mysql:/docker-entrypoint-initdb.d/
+
+    environment:
+           - MYSQL_ROOT_PASSWORD=root
+
+    restart: always
+  backendserver:
+    build: ./backend
+    container_name: bnm-backend
+    ports:
+           - 8080:8080
+    depends_on:
+           - db
+    restart: always
+  frontend:
+    build: ./frontend
+    container_name: bnm-frontend
+    depends_on:
+           - backendserver
+    ports:
+           - 4200:4200      
+
+volumes:
+  -DB-data :

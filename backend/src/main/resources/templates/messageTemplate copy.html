@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:th="http://www.thymeleaf.org"
+>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://icons.getbootstrap.com/assets/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <style>
+      .btn-contact {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+        background-color: transparent;
+        outline: 0px;
+        margin: 0px;
+        cursor: pointer;
+        user-select: none;
+        vertical-align: middle;
+        appearance: none;
+        text-decoration: none;
+        text-transform: capitalize;
+        font-family: Roboto;
+        font-size: 0.875rem;
+        line-height: 1.75;
+        min-width: 64px;
+        padding: 5px 15px;
+        transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+          box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+          border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+          color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+          transform 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+        font-weight: 500;
+        border-radius: 4px;
+        width: 100%;
+      }
+      .primary {
+        border: 1px solid rgba(32, 52, 97, 0.5);
+        color: rgb(32, 52, 97);
+      }
+      .primary:hover {
+        background-color: rgba(32, 52, 97, 0.04);
+        border: 1px solid rgb(32, 52, 97);
+        color: rgb(32, 52, 97);
+      }
+      .primary:active {
+        background-color: rgba(32, 51, 97, 0.082);
+        transform: scale(0.97);
+      }
+      .secondary {
+        border: 1px solid rgba(255, 77, 12, 0.5);
+        color: rgb(255, 77, 12);
+      }
+      .secondary:hover {
+        background-color: rgba(236, 64, 122, 0.04);
+        border: 1px solid rgb(236, 64, 122);
+        color: rgb(255, 77, 12);
+      }
+      .secondary:active {
+        background-color: rgba(236, 64, 122, 0.082);
+        transform: scale(0.97);
+      }
+
+      /* ******* Social media icons ******** */
+
+      body {
+        margin: 0;
+        padding: 0;
+        background: #ebebeb;
+      }
+      .social-media ul {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .social-media ul li {
+        list-style: none;
+      }
+      .social-media ul li a {
+        display: block;
+        position: relative;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        font-size: 20px;
+        text-align: center;
+        text-decoration: none;
+        color: #404040;
+        margin: 0 30px;
+        transition: 0.5s;
+      }
+      .social-media ul li a span {
+        position: absolute;
+        transition: transform 0.5s;
+      }
+      .social-media ul li a span:nth-child(1),
+      .social-media ul li a span:nth-child(3) {
+        width: 100%;
+        height: 3px;
+        background: #404040;
+      }
+      .social-media ul li a span:nth-child(1) {
+        top: 0;
+        left: 0;
+        transform-origin: right;
+      }
+      .social-media ul li a:hover span:nth-child(1) {
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.5s;
+      }
+
+      .social-media ul li a span:nth-child(3) {
+        bottom: 0;
+        left: 0;
+        transform-origin: left;
+      }
+      .social-media ul li a:hover span:nth-child(3) {
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.5s;
+      }
+
+      .social-media ul li a span:nth-child(2),
+      .social-media ul li a span:nth-child(4) {
+        width: 3px;
+        height: 100%;
+        background: #404040;
+      }
+      .social-media ul li a span:nth-child(2) {
+        top: 0;
+        left: 0;
+        transform: scale(0);
+        transform-origin: bottom;
+      }
+      .social-media ul li a:hover span:nth-child(2) {
+        transform: scale(1);
+        transform-origin: top;
+        transition: transform 0.5s;
+      }
+      .social-media ul li a span:nth-child(4) {
+        top: 0;
+        right: 0;
+        transform: scale(0);
+        transform-origin: top;
+      }
+      .social-media ul li a:hover span:nth-child(4) {
+        transform: scale(1);
+        transform-origin: bottom;
+        transition: transform 0.5s;
+      }
+
+      .facebook:hover {
+        color: #3b5998;
+      }
+      .facebook:hover span {
+        background: #3b5998;
+      }
+      .twitter:hover {
+        color: #1da1f2;
+      }
+      .twitter:hover span {
+        background: #1da1f2;
+      }
+      .instagram:hover {
+        color: #c32aa3;
+      }
+      .instagram:hover span {
+        background: #c32aa3;
+      }
+      .google:hover {
+        color: #dd4b39;
+      }
+      .google:hover span {
+        background: #dd4b39;
+      }
+      .social-media ul li a .twitter {
+        color: #1da1f2;
+      }
+      .social-media ul li a:hover:nth-child(3) {
+        color: #c32aa3;
+      }
+      .social-media ul li a:hover:nth-child(4) {
+        color: #dd4b39;
+      }
+
+      .fs-8 {
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="bg-light pb-4">
+      <section class="container d-flex justify-content-center py-4">
+        <div
+          class="bg-white col-lg-6 p-5 d-flex justify-content-center align-items-center flex-column gap-4"
+        >
+          <header class="text-center">
+            <svg
+              fill="none"
+              height="32"
+              viewBox="0 0 142 32"
+              width="142"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g filter="url(#filter0_d_318_1256)">
+                <path
+                  d="M90.9569 9.00053C90.9095 9.10185 86.3801 19.0116 85.5486 20.7409C85.312 21.2273 85.116 21.4029 84.8456 21.3624C84.5278 21.3151 84.4129 21.0449 84.2642 20.4504C84.2236 20.2883 84.1763 20.0992 84.129 19.8898C83.9397 19.0927 83.6017 17.6336 83.2299 16.0528C82.7365 13.9385 82.1889 11.608 81.8982 10.3583L81.6075 9.13563L81.5805 9.04105C81.5061 8.73032 81.4453 8.46012 81.3912 8.2372C80.918 6.28497 79.7214 5.10282 78.1194 5.00825C76.4225 4.90693 75.1855 5.73781 74.3472 7.54818C73.8132 8.68979 71.7311 13.2225 70.352 16.2218C69.6355 17.7822 69.0676 19.0184 69.0474 19.0589L69 19.1535L71.7514 20.4032L71.7919 20.3153C71.8393 20.214 76.3212 10.3921 77.1594 8.66277C77.396 8.1764 77.592 8.00077 77.8625 8.0413C78.1802 8.08859 78.2951 8.35879 78.4438 8.95324C78.5655 9.45312 78.7413 10.1962 78.9441 11.0608C78.9441 11.0608 80.1879 16.3771 80.8774 19.3224L81.0465 20.0452L81.1208 20.3626C81.2357 20.8625 81.3101 21.18 81.3236 21.2273C81.3574 21.3692 81.398 21.4975 81.4453 21.6326C81.9929 23.3281 83.1083 24.3144 84.5887 24.4022C84.6833 24.409 84.778 24.409 84.8659 24.409C86.4207 24.409 87.5631 23.5713 88.3608 21.8622C88.8884 20.7274 90.9703 16.2015 92.3495 13.209C93.0929 11.5878 93.6808 10.311 93.7014 10.2705L93.7488 10.1759L90.997 8.91947L90.9569 9.00053Z"
+                  fill="#ff5000"
+                />
+              </g>
+              <g filter="url(#filter1_d_318_1256)">
+                <path
+                  d="M17.4874 13.836C19.0274 13.08 20.1194 11.596 20.1194 9.468C20.1194 6.304 17.5994 4.4 13.0914 4.4H4.29938V24H13.6514C18.6074 24 21.1554 22.068 21.1554 18.708C21.1554 16.104 19.6994 14.452 17.4874 13.836ZM12.8394 6.668C15.6954 6.668 17.3194 7.732 17.3194 9.804C17.3194 11.876 15.6954 12.94 12.8394 12.94H7.09938V6.668H12.8394ZM13.5394 21.732H7.09938V15.208H13.5394C16.6474 15.208 18.3274 16.216 18.3274 18.484C18.3274 20.752 16.6474 21.732 13.5394 21.732ZM26.9428 6.304C28.0068 6.304 28.7628 5.52 28.7628 4.512C28.7628 3.56 27.9788 2.804 26.9428 2.804C25.9068 2.804 25.1228 3.588 25.1228 4.568C25.1228 5.548 25.9068 6.304 26.9428 6.304ZM25.5988 24H28.2868V9.16H25.5988V24ZM45.2591 24H48.5631L41.7031 15.292L47.9471 9.16H44.6991L36.6071 16.552V3.224H33.9191V24H36.6071V19.94L39.6871 17.084L45.2591 24ZM64.4561 16.664C64.4561 12.1 61.4041 9.02 57.1201 9.02C52.8361 9.02 49.6721 12.184 49.6721 16.58C49.6721 21.004 52.8641 24.168 57.6521 24.168C60.1161 24.168 62.1601 23.328 63.5041 21.76L62.0201 20.024C60.9281 21.228 59.4721 21.816 57.7361 21.816C54.7961 21.816 52.6961 20.08 52.3601 17.476H64.4001C64.4281 17.224 64.4561 16.888 64.4561 16.664ZM57.1201 11.288C59.7241 11.288 61.6001 13.052 61.8801 15.544H52.3601C52.6401 13.024 54.5441 11.288 57.1201 11.288Z"
+                  fill="#231F20"
+                />
+              </g>
+              <g filter="url(#filter2_d_318_1256)">
+                <path
+                  d="M118.107 25L118.079 5.4H115.783L107.719 19.176L99.5426 5.4H97.2466V25H99.9346V10.804L107.019 22.62H108.307L115.391 10.72L115.419 25H118.107ZM137.509 17.664C137.509 13.1 134.457 10.02 130.173 10.02C125.889 10.02 122.725 13.184 122.725 17.58C122.725 22.004 125.917 25.168 130.705 25.168C133.169 25.168 135.213 24.328 136.557 22.76L135.073 21.024C133.981 22.228 132.525 22.816 130.789 22.816C127.849 22.816 125.749 21.08 125.413 18.476H137.453C137.481 18.224 137.509 17.888 137.509 17.664ZM130.173 12.288C132.777 12.288 134.653 14.052 134.933 16.544H125.413C125.693 14.024 127.597 12.288 130.173 12.288Z"
+                  fill="#231F20"
+                />
+              </g>
+              <defs>
+                <filter
+                  color-interpolation-filters="sRGB"
+                  filterUnits="userSpaceOnUse"
+                  height="27.409"
+                  id="filter0_d_318_1256"
+                  width="32.7488"
+                  x="65"
+                  y="3"
+                >
+                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <feColorMatrix
+                    in="SourceAlpha"
+                    result="hardAlpha"
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                  />
+                  <feOffset dy="2" />
+                  <feGaussianBlur stdDeviation="2" />
+                  <feComposite in2="hardAlpha" operator="out" />
+                  <feColorMatrix
+                    type="matrix"
+                    values="0 0 0 0 1 0 0 0 0 0.631373 0 0 0 0 0.294118 0 0 0 0.33 0"
+                  />
+                  <feBlend
+                    in2="BackgroundImageFix"
+                    mode="normal"
+                    result="effect1_dropShadow_318_1256"
+                  />
+                  <feBlend
+                    in="SourceGraphic"
+                    in2="effect1_dropShadow_318_1256"
+                    mode="normal"
+                    result="shape"
+                  />
+                </filter>
+                <filter
+                  color-interpolation-filters="sRGB"
+                  filterUnits="userSpaceOnUse"
+                  height="29.364"
+                  id="filter1_d_318_1256"
+                  width="68.1567"
+                  x="0.299316"
+                  y="0.804016"
+                >
+                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <feColorMatrix
+                    in="SourceAlpha"
+                    result="hardAlpha"
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                  />
+                  <feOffset dy="2" />
+                  <feGaussianBlur stdDeviation="2" />
+                  <feComposite in2="hardAlpha" operator="out" />
+                  <feColorMatrix
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.39 0"
+                  />
+                  <feBlend
+                    in2="BackgroundImageFix"
+                    mode="normal"
+                    result="effect1_dropShadow_318_1256"
+                  />
+                  <feBlend
+                    in="SourceGraphic"
+                    in2="effect1_dropShadow_318_1256"
+                    mode="normal"
+                    result="shape"
+                  />
+                </filter>
+                <filter
+                  color-interpolation-filters="sRGB"
+                  filterUnits="userSpaceOnUse"
+                  height="27.768"
+                  id="filter2_d_318_1256"
+                  width="48.2622"
+                  x="93.2466"
+                  y="3.40002"
+                >
+                  <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                  <feColorMatrix
+                    in="SourceAlpha"
+                    result="hardAlpha"
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                  />
+                  <feOffset dy="2" />
+                  <feGaussianBlur stdDeviation="2" />
+                  <feComposite in2="hardAlpha" operator="out" />
+                  <feColorMatrix
+                    type="matrix"
+                    values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.39 0"
+                  />
+                  <feBlend
+                    in2="BackgroundImageFix"
+                    mode="normal"
+                    result="effect1_dropShadow_318_1256"
+                  />
+                  <feBlend
+                    in="SourceGraphic"
+                    in2="effect1_dropShadow_318_1256"
+                    mode="normal"
+                    result="shape"
+                  />
+                </filter>
+              </defs>
+            </svg>
+            <h5 class="mt-4">
+              You've received message from <b th:text="${contact.name}"></b>
+            </h5>
+          </header>
+          <hr class="border-dark w-100" />
+          <div class="text-start w-100">
+            <div>Hi Admin,</div>
+            <div><b th:text="${contact.name}"></b> left you a message :</div>
+            <div class="mx-5">
+              <hr class="border-dark w-100 my-3" />
+              <ul class="nav gap-3">
+                <li class="nav-item">
+                  <h6 class="">
+                    Subject : <b th:text="${contact.subject}"></b>
+                  </h6>
+                </li>
+                <li class="">
+                  <h6 class="">Message</h6>
+                  <div
+                    style="text-align: justify"
+                    th:text="${contact.message}"
+                  ></div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div
+            class="w-100 d-flex justify-content-between align-items-center gap-4"
+          >
+            <a th:href="'mailto:'+${contact.email}" class="btn-contact primary">
+              <i class="bi bi-chat-left-text-fill me-2"></i>Message
+            </a>
+            <a th:href="'tel:'+${contact.number}" class="btn-contact secondary">
+              <i class="bi bi-telephone-fill me-2"></i>Call
+            </a>
+          </div>
+        </div>
+      </section>
+      <footer class="container d-flex justify-content-center">
+        <div class="col-lg-6">
+          <div class="social-media">
+            <ul>
+              <li>
+                <a class="facebook" href="https://www.facebook.com/revolver2001/">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <i class="bi bi-facebook"></i>
+                </a>
+              </li>
+              <li>
+                <a class="twitter" href="https://twitter.com/MohamedArbani1">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <i class="bi bi-twitter"></i>
+                </a>
+              </li>
+              <li>
+                <a class="instagram" href="https://www.instagram.com/wf.mohamed2001/">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <i class="bi bi-instagram"></i>
+                </a>
+              </li>
+              <li>
+                <a class="google" href="#">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <i class="bi bi-globe2"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="text-center mt-3">
+            <span class="fs-8 text-black-50">
+              This email was intended for mohamedarbani, because you signed up
+              for BikeNearMe.<br />
+              Learn about email security and online safety. <br />
+              <a href="#">©BikeNMe</a> International Ltd. 2023
+            </span>
+          </div>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>
